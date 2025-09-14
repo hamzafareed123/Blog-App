@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head") %>
+    <title>SignIn</title>
+  </head>
+  <body>
+    <div class="container">
+      <form
+        method="post"
+        action="/user/signin"
+        class="w-50 mx-auto mt-5 p-4 border rounded shadow"
+        aria-describedby="fullName"
+      >
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" name="email" class="form-control" id="email" />
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            id="password"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
