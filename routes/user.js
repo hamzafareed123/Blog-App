@@ -31,14 +31,21 @@ router.post("/signup",async (req,res)=>{
 })
 
 router.post("/signin", async(req,res)=>{
-    const {email,password} =req.body;
+    try {
+        const {email,password} =req.body;
 
-  const user= await User.matchPassword(email,password)
-    if(!user){
+  const token= await User.matchPasswordAndGenerateToken(email,password)
+    if(!token){
         return res.status(400).json("Incorrect")
+       
     }
 
-    res.redirect("/")
+    res.cookie("token", token, { httpOnly: true, secure: false, }).redirect("/");
+    } catch (error) {
+        return res.render("signin",{
+            locals: { error: "Invalid Email or Password" }
+        })
+    }
 })
 
 module.exports=router
